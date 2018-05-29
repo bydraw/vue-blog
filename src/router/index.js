@@ -5,10 +5,12 @@ import HomePage from '@/components/Homepage'
 import Blog from '@/components/Blog'
 import BlogDetail from '@/components/BlogDetail'
 import store from '@/store.js'
+import NotFound from '@/components/404'
 Vue.use(Router)
 
 const router = new Router({
   routes: [
+    { path: '*', component: NotFound },
     {
       path: '/login',
       name: 'Login',
@@ -25,7 +27,7 @@ const router = new Router({
       component: Blog
     },
     {
-      path:'/blogdetail',
+      path: '/blogdetail',
       name: 'BlogDetail',
       component: BlogDetail
     }
