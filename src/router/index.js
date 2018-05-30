@@ -10,7 +10,7 @@ Vue.use(Router)
 
 const router = new Router({
   routes: [
-    { path: '*', component: NotFound },
+    { path: '*', name: '404', component: NotFound },
     {
       path: '/login',
       name: 'Login',

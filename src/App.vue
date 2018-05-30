@@ -34,7 +34,8 @@ export default {
   },
   methods: {
     toggleNavBar() {
-      if (this.$route.path == '/login' || this.$route.path == '/blogdetail') {
+      const noNavBar = ['Login', 'BlogDetail', '404']
+      if (noNavBar.includes(this.$route.name)) {
         this.hasNavBar = false
       } else {
         this.hasNavBar = true
