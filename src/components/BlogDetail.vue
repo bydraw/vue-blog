@@ -6,7 +6,7 @@
       <div slot="header" class="clearfix">
         <span>{{title}}</span>
       </div>
-      <div class="text item">
+      <div class="text item blogContent">
         {{content}}
       </div>
     </el-card>
@@ -51,6 +51,9 @@ export default {
 .el-card {
   width: 60%;
   margin: 5px auto;
+}
+.blogContent{
+  line-height: 30px;
 }
 @media screen and (max-width: 480px) {
   .el-card {
