@@ -43,25 +43,38 @@ export default {
     },
     getTime() {
       this.localtime = new Date().toLocaleTimeString()
+    },
+    setInfo() {
+      this.ip = returnCitySN.cip
+      this.city = returnCitySN.cname
+      this.$ajax
+        .get('https://www.apiopen.top/weatherApi?city=' + returnCitySN.cname)
+        .then(res => {
+          if (res.data.code != 200) {
+            this.hasData = false
+          } else {
+            this.weather = res.data.data
+          }
+        })
     }
   },
   mounted() {
     this.getInfo()
     this.getDate()
     setInterval(this.getTime, 1000)
-    this.$ajax.get('http://freegeoip.net/json/').then(res => {
-      this.ip = res.data.ip
+    const _vm = this
+    $.ajax({
+      type: 'get',
+      async: false,
+      url: 'http://pv.sohu.com/cityjson',
+      dataType: 'jsonp',
+      success() {
+        _vm.setInfo()
+      },
+      error() {
+        _vm.setInfo()
+      }
     })
-    this.city = remote_ip_info.country + ' ' + remote_ip_info.city
-    this.$ajax
-      .get('https://www.apiopen.top/weatherApi?city=' + remote_ip_info.city)
-      .then(res => {
-        if (res.data.code != 200) {
-          this.hasData = false
-        } else {
-          this.weather = res.data.data
-        }
-      })
   }
 }
 </script>
