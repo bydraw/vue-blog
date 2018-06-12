@@ -45,6 +45,13 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+  font-family: MonacoB;
+  src: url('/static/MonacoB.otf');
+}
+.blogContent {
+  font-family: 'MonacoB', 'Avenir', Helvetica, Arial, sans-serif;
+}
 .blogDetailCard .el-card__header span {
   font-size: 18px;
 }
@@ -52,7 +59,7 @@ export default {
   width: 60%;
   margin: 5px auto;
 }
-.blogContent{
+.blogContent {
   line-height: 30px;
 }
 @media screen and (max-width: 480px) {
