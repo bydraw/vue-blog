@@ -14,7 +14,7 @@ export default {
     return {
       ip: 'unknown',
       city: 'unknown',
-      weather: {},
+      weather: { wendu: 'unknown' },
       userLanguage: 'unknown',
       browserVersion: 'unknown',
       date: 'unknown',
@@ -35,7 +35,7 @@ export default {
                 ? 'Safari '
                 : ua.indexOf('Firefox') > -1
                   ? 'Firefox ' + ua.split('Firefox/')[1].slice(0, 4)
-                  : 'Unknown Browser'
+                  : 'Internet Explorer or Others'
     },
     getDate() {
       let d = new Date()

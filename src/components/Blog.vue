@@ -24,7 +24,7 @@ export default {
       inputTitle: '',
       inputContent: '',
       isMaster: false,
-      blogList: [{ title: '加载中...', content: '加载中...' }]
+      blogList: [{ title: '加载中...'}]
     }
   },
   activated() {
@@ -38,9 +38,15 @@ export default {
     getBlogs() {
       this.$ajax.get('/blog.php').then(res => {
         if (typeof res.data == 'string') {
-          this.blogList = [{ title: '暂无', content: '' }]
+          this.blogList = [{ title: '暂无'}]
         } else {
-          this.blogList = res.data
+          let data = res.data.map(blogItem => {
+            return {
+              id: blogItem.id,
+              title: decodeURIComponent(blogItem.title)
+            }
+          })
+          this.blogList = data
         }
       })
     },
@@ -60,8 +66,8 @@ export default {
         })
       } else {
         var params = new URLSearchParams()
-        params.append('title', this.inputTitle)
-        params.append('content', this.inputContent)
+        params.append('title', encodeURIComponent(this.inputTitle))
+        params.append('content', encodeURIComponent(this.inputContent))
         this.$ajax.post('/blog.php', params).then(res => {
           this.inputTitle = ''
           this.inputContent = ''

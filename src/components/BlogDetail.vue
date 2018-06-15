@@ -7,7 +7,7 @@
         <span>{{title}}</span>
       </div>
       <div class="text item blogContent">
-        {{content}}
+        <pre>{{content}}</pre>
       </div>
     </el-card>
   </div>
@@ -31,8 +31,8 @@ export default {
       if (data.error) {
         alert(data.error)
       } else {
-        this.title = data.title
-        this.content = data.content
+        this.title = decodeURIComponent(data.title)
+        this.content = decodeURIComponent(data.content)
       }
     })
   },
@@ -46,11 +46,12 @@ export default {
 
 <style scoped>
 @font-face {
-  font-family: MonacoB;
-  src: url('/static/MonacoB.otf');
+  font-family: 'MonacoB';
+  src: url-loader('/static/MonacoB.otf') format('embedded-opentype');
 }
-.blogContent {
+.blogContent pre {
   font-family: 'MonacoB', 'Avenir', Helvetica, Arial, sans-serif;
+  white-space: normal;
 }
 .blogDetailCard .el-card__header span {
   font-size: 18px;
